@@ -1,8 +1,11 @@
+//Mensaje inicial para la consola
 console.log("Iniciando sistema de gestión de productos");
 
+// Capturamos los argumentos de la terminal y definimos la URL base de la API
 const args = process.argv.slice(2);
 const ApiUrl = "https://fakestoreapi.com";
 
+// Función para obtener productos (todos o por ID según el parámetro recibido)
 async function obtenerProductos(url){
     try {
         const response = await fetch(`${ApiUrl}/${url}`);
@@ -14,6 +17,7 @@ async function obtenerProductos(url){
     }
 }
 
+// Función para eliminar un producto enviado el método DELETE
 async function eliminarProducto(producto){
     try {
         const response = await fetch(`${ApiUrl}/${producto}`, {
@@ -28,6 +32,7 @@ async function eliminarProducto(producto){
     }
 }
 
+// Función para crear un nuevo producto enviando los datos por POST en formato JSON
 async function crearProducto(producto) {
     try {
         const response = await fetch (`${ApiUrl}/products`, {
@@ -47,6 +52,7 @@ async function crearProducto(producto) {
     }
 }
 
+// Estructura de control para evaluar el comando ingresado en la terminal (args[0])
 switch (args[0]) {
     case "GET":
         console.log (`Acción detectada: [GET]`);
